@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-select v-model="taskTitle" placeholder="活动区域" @change="handleFilter" clearable>
+    <el-select v-model="taskTitle" placeholder="活动区域" @change="setFilter" clearable>
       <el-option label="批量改类目属性" value="批量改类目属性"></el-option>
       <el-option label="批量上下架" value="批量上下架"></el-option>
     </el-select>
@@ -45,12 +45,7 @@ export default {
     })
   },
   methods:{
-    ...mapActions('example',['handleCurrentChange','query','getters','handleSizeChange','otherAction','setFilter']),
-    handleFilter(taskTitle){
-      this.setFilter({
-        taskTitle
-      })
-    }
+    ...mapActions('example',['handleCurrentChange','query','getters','handleSizeChange','otherAction','setFilter'])
   }
 }
 </script>

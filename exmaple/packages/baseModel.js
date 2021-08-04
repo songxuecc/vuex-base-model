@@ -77,7 +77,6 @@ const baseModel = ({fetch,pagination}) => {
         }),
         mutations: {
             save(state, payload) {
-                console.log(state,payload, 'payload')
                 Object.assign(state, payload)
             }
         },
@@ -87,8 +86,6 @@ const baseModel = ({fetch,pagination}) => {
                 state,
             }, payload) {
                 const {pagination = state.pagination , filters} = payload || {}
-                console.log(state.pagination,'state.pagination');
-                console.log(pagination,'pagination');
                  try {
                     // 如果filter和之前的条件不等 则从第一页开始获取数据
                     if (!isEqual(filters, state.filters)) {
@@ -145,7 +142,7 @@ const baseModel = ({fetch,pagination}) => {
                 const filters = payload
                 dispatch('query',{
                     filters,
-                    pagination: originPagination
+                    pagination: pagenation
                 })
             }
         }
