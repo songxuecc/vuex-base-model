@@ -1,0 +1,283 @@
+export const data = {
+    "item_list": [{
+        "status": 2,
+        "ext_json": {
+            "category_dict": {
+                "21295": [{
+                    "name": "\u54c1\u724c",
+                    "value": ""
+                }, {
+                    "name": "\u8d27\u53f7",
+                    "value": ""
+                }, {
+                    "name": "\u517c\u5bb9\u5e73\u53f0",
+                    "value": ""
+                }, {
+                    "name": "\u5f85\u673a\u65f6\u95f4",
+                    "value": ""
+                }, {
+                    "name": "\u4ea7\u5730",
+                    "value": ""
+                }, {
+                    "name": "CCC\u8bc1\u4e66\u7f16\u53f7",
+                    "value": ""
+                }, {
+                    "name": "\u578b\u53f7\u89c4\u683c",
+                    "value": "\u6211\u662f\u89c4\u683c"
+                }, {
+                    "name": "\u2063\u751f\u4ea7\u5382\u5bb6",
+                    "value": ""
+                }, {
+                    "name": "\u4e0a\u5e02\u65f6\u95f4",
+                    "value": ""
+                }, {
+                    "name": "\u529f\u80fd",
+                    "value": ""
+                }, {
+                    "name": "\u667a\u80fd\u7c7b\u578b",
+                    "value": ""
+                }, {
+                    "name": "\u9002\u7528\u5bf9\u8c61",
+                    "value": ""
+                }, {
+                    "name": "\u65e0\u7ebf\u8ddd\u79bb",
+                    "value": ""
+                }]
+            }
+        },
+        "status_str": "\u5b8c\u6210",
+        "create_time": "2021-08-03 11:54:43",
+        "task_sub_type": 10,
+        "fail_nums": 1,
+        "success_nums": 2,
+        "task_type": 1,
+        "task_title": "\u6279\u91cf\u6539\u7c7b\u76ee\u5c5e\u6027",
+        "total_nums": 3,
+        "task_id": 7019
+    }, {
+        "status": 2,
+        "ext_json": {
+            "category_dict": {
+                "21295": [{
+                    "name": "\u54c1\u724c",
+                    "value": ""
+                }, {
+                    "name": "\u8d27\u53f7",
+                    "value": "7889"
+                }, {
+                    "name": "\u517c\u5bb9\u5e73\u53f0",
+                    "value": ""
+                }, {
+                    "name": "\u5f85\u673a\u65f6\u95f4",
+                    "value": ""
+                }, {
+                    "name": "\u4ea7\u5730",
+                    "value": ""
+                }, {
+                    "name": "CCC\u8bc1\u4e66\u7f16\u53f7",
+                    "value": ""
+                }, {
+                    "name": "\u578b\u53f7\u89c4\u683c",
+                    "value": ""
+                }, {
+                    "name": "\u2063\u751f\u4ea7\u5382\u5bb6",
+                    "value": ""
+                }, {
+                    "name": "\u4e0a\u5e02\u65f6\u95f4",
+                    "value": ""
+                }, {
+                    "name": "\u529f\u80fd",
+                    "value": ""
+                }, {
+                    "name": "\u667a\u80fd\u7c7b\u578b",
+                    "value": ""
+                }, {
+                    "name": "\u9002\u7528\u5bf9\u8c61",
+                    "value": ""
+                }, {
+                    "name": "\u65e0\u7ebf\u8ddd\u79bb",
+                    "value": ""
+                }]
+            }
+        },
+        "status_str": "\u5b8c\u6210",
+        "create_time": "2021-08-03 11:50:03",
+        "task_sub_type": 10,
+        "fail_nums": 1,
+        "success_nums": 2,
+        "task_type": 1,
+        "task_title": "\u6279\u91cf\u6539\u7c7b\u76ee\u5c5e\u6027",
+        "total_nums": 3,
+        "task_id": 7018
+    }, {
+        "status": 2,
+        "ext_json": {
+            "category_dict": {
+                "21295": [{
+                    "name": "\u54c1\u724c",
+                    "value": ""
+                }, {
+                    "name": "\u8d27\u53f7",
+                    "value": ""
+                }, {
+                    "name": "\u517c\u5bb9\u5e73\u53f0",
+                    "value": ""
+                }, {
+                    "name": "\u5f85\u673a\u65f6\u95f4",
+                    "value": "\u6211\u662f\u5f85\u673a\u65f6\u95f4"
+                }, {
+                    "name": "\u4ea7\u5730",
+                    "value": ""
+                }, {
+                    "name": "CCC\u8bc1\u4e66\u7f16\u53f7",
+                    "value": "\u6211\u662fCCC\u8bc1\u4e66\u7f16\u53f7"
+                }, {
+                    "name": "\u578b\u53f7\u89c4\u683c",
+                    "value": "\u6211\u662f\u578b\u53f7\u89c4\u683c1"
+                }, {
+                    "name": "\u2063\u751f\u4ea7\u5382\u5bb6",
+                    "value": "\u6211\u662f\u751f\u4ea7\u5382\u5bb61"
+                }, {
+                    "name": "\u4e0a\u5e02\u65f6\u95f4",
+                    "value": ""
+                }, {
+                    "name": "\u529f\u80fd",
+                    "value": ""
+                }, {
+                    "name": "\u667a\u80fd\u7c7b\u578b",
+                    "value": ""
+                }, {
+                    "name": "\u9002\u7528\u5bf9\u8c61",
+                    "value": ""
+                }, {
+                    "name": "\u65e0\u7ebf\u8ddd\u79bb",
+                    "value": ""
+                }]
+            }
+        },
+        "status_str": "\u5b8c\u6210",
+        "create_time": "2021-08-03 11:06:42",
+        "task_sub_type": 10,
+        "fail_nums": 1,
+        "success_nums": 2,
+        "task_type": 1,
+        "task_title": "\u6279\u91cf\u6539\u7c7b\u76ee\u5c5e\u6027",
+        "total_nums": 3,
+        "task_id": 7014
+    }, {
+        "status": 2,
+        "ext_json": {
+            "onshelf": 1
+        },
+        "status_str": "\u5b8c\u6210",
+        "create_time": "2021-08-03 11:02:51",
+        "task_sub_type": 1,
+        "fail_nums": 41,
+        "success_nums": 2,
+        "task_type": 1,
+        "task_title": "\u6279\u91cf\u4e0a\u4e0b\u67b6",
+        "total_nums": 43,
+        "task_id": 7013
+    }, {
+        "status": 2,
+        "ext_json": {
+            "onshelf": 0
+        },
+        "status_str": "\u5b8c\u6210",
+        "create_time": "2021-08-03 00:23:39",
+        "task_sub_type": 1,
+        "fail_nums": 0,
+        "success_nums": 43,
+        "task_type": 1,
+        "task_title": "\u6279\u91cf\u4e0a\u4e0b\u67b6",
+        "total_nums": 43,
+        "task_id": 6995
+    }, {
+        "status": 2,
+        "ext_json": {
+            "is_replace": 0,
+            "is_delete": 0,
+            "is_prefix": 1,
+            "is_suffix": 1,
+            "prefix": "1",
+            "suffix": "",
+            "source_str": "",
+            "target_str": "",
+            "delete_str": "",
+            "title_cut_type": 3
+        },
+        "status_str": "\u5b8c\u6210",
+        "create_time": "2021-07-30 12:06:44",
+        "task_sub_type": 2,
+        "fail_nums": 9,
+        "success_nums": 0,
+        "task_type": 1,
+        "task_title": "\u6279\u91cf\u6539\u6807\u9898",
+        "total_nums": 9,
+        "task_id": 6413
+    }, {
+        "status": 2,
+        "ext_json": {},
+        "status_str": "\u5b8c\u6210",
+        "create_time": "2021-07-28 12:57:35",
+        "task_sub_type": 9,
+        "fail_nums": 0,
+        "success_nums": 1,
+        "task_type": 1,
+        "task_title": "\u6279\u91cf\u5220\u9664",
+        "total_nums": 1,
+        "task_id": 6068
+    }, {
+        "status": 2,
+        "ext_json": {},
+        "status_str": "\u5b8c\u6210",
+        "create_time": "2021-07-28 12:54:32",
+        "task_sub_type": 9,
+        "fail_nums": 0,
+        "success_nums": 2,
+        "task_type": 1,
+        "task_title": "\u6279\u91cf\u5220\u9664",
+        "total_nums": 2,
+        "task_id": 6067
+    }, {
+        "status": 2,
+        "ext_json": {
+            "is_formula": 0,
+            "origin_price_rate": 100000,
+            "incr_diff": 0,
+            "desc_diff": 0,
+            "is_every_price": 1,
+            "every_price": 10000000,
+            "is_open_min_price": 0,
+            "min_price": 0,
+            "is_open_min_price_rate": 0,
+            "min_price_rate": 0
+        },
+        "status_str": "\u5b8c\u6210",
+        "create_time": "2021-07-23 01:43:01",
+        "task_sub_type": 4,
+        "fail_nums": 1,
+        "success_nums": 96,
+        "task_type": 1,
+        "task_title": "\u6279\u91cf\u6539\u4ef7\u683c",
+        "total_nums": 97,
+        "task_id": 5575
+    }, {
+        "status": 2,
+        "ext_json": {
+            "commit_type": 1,
+            "cost_template_id": 796365,
+            "template_name": "\u80e1\u6653\u6d4b\u8bd5"
+        },
+        "status_str": "\u5b8c\u6210",
+        "create_time": "2021-07-23 01:42:09",
+        "task_sub_type": 6,
+        "fail_nums": 0,
+        "success_nums": 97,
+        "task_type": 1,
+        "task_title": "\u6279\u91cf\u6539\u8fd0\u8d39\u6a21\u677f",
+        "total_nums": 97,
+        "task_id": 5574
+    }],
+    "total": 65
+}
