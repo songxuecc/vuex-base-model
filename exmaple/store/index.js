@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {createLoadingPlugin, setConfig } from '../packages'
+import {createLoadingPlugin, setBaseModelConfig } from '../packages'
 import example from './example'
 import example2 from './example2'
 import example3 from './example3'
 
-setConfig({
+setBaseModelConfig({
   getList: (data) => {
     return {
       tableData:  data.item_list,

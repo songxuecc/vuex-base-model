@@ -1,14 +1,12 @@
 export {
-    setConfig,
-    
+    setBaseModelConfig,
 }
-from "./baseModel";
+from "./createBaseModel";
 
 export {
-    default as baseModel
+    default as createBaseModel
 }
-from "./baseModel";
-
+from "./createBaseModel";
 
 export {
     default as createLoadingPlugin
