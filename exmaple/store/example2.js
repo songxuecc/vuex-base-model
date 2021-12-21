@@ -1,11 +1,11 @@
 import {
-    baseModel,
+    createBaseModel,
     modelExtend
 } from '../packages'
 import {fetch2} from "../server/fetch";
 
 
-const baseModels = baseModel({
+const baseModels = createBaseModel({
     fetch:fetch2,
     pagination: {
         page_size: 3

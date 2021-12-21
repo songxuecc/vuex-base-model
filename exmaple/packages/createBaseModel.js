@@ -1,4 +1,5 @@
 import isEqual from 'lodash/isEqual'
+import debounce from 'lodash/debounce'
 
 function isFunction (func) {
   return typeof func === 'function'
@@ -8,7 +9,11 @@ let getList = () => ({
   tableData: [],
   pagination: {},
   total: 0
+})
 
+let formatParmas = (parmas) => ({
+  ...parmas.pagination,
+  ...parmas.filters
 })
 
 let originPagination = {
@@ -16,36 +21,24 @@ let originPagination = {
   page_index: 1
 }
 
-let originHandleError
-let hasSetPaginationSize = false
-let hasSetPaginationIndex = false
-let hasSetHandleError = false
+let handleError = () => {}
+
 export function setBaseModelConfig (options) {
   if (!isFunction(options.getList)) {
     throw new TypeError('getList is not a Function.')
   }
-
-  if (options.handleError && !isFunction(options.handleError)) {
+  if (!isFunction(options.handleError)) {
     throw new TypeError('handleError is not a Function.')
   }
-
-  getList = options.getList
-  if (options.pagination && options.pagination.page_size && !hasSetPaginationSize) originPagination.page_size = options.pagination.page_size
-  if (options.pagination && options.pagination.page_index && !hasSetPaginationIndex) originPagination.page_index = options.pagination.page_index
-  if (options.handleError && !hasSetHandleError) {
-    originHandleError = options.handleError
+  if (!isFunction(options.formatParmas)) {
+    throw new TypeError('formatParmas is not a Function.')
   }
-}
+  if (options.getList) getList = options.getList
+  if (options.formatParmas) formatParmas = options.formatParmas
+  if (options.handleError) handleError = options.handleError
 
-const checkPagination = (pagenation) => {
-  if (!pagenation) return
-  if (typeof pagenation === 'object') {
-    if (!Object.prototype.hasOwnProperty.call(pagenation, 'page_size') && Object.prototype.hasOwnProperty.call(pagenation, 'page_index')) {
-      throw new TypeError('(page_size || page_index) is not in pagenation')
-    }
-  } else {
-    throw new TypeError('pagenation is not a Object')
-  }
+  if (options.pagination && options.pagination.page_size) originPagination.page_size = options.pagination.page_size
+  if (options.pagination && options.pagination.page_index) originPagination.page_index = options.pagination.page_index
 }
 
 const checkHandleError = (handleError) => {
@@ -54,45 +47,38 @@ const checkHandleError = (handleError) => {
   }
 }
 
+const checkFetch = (fetch) => {
+  if (fetch && !isFunction(fetch)) {
+    throw new TypeError('fetch is not a Function.')
+  }
+}
+
 class BaseModelClass {
   constructor (options) {
-    this.originPagination = originPagination
-    this.hasSetPaginationSize = false
-    this.hasSetPaginationIndex = false
-    this.hasSetHandleError = false
-    this.hasSetHandleError = false
-
+    checkFetch(options.fetch)
+    checkHandleError(options.handleError)
+    // 初始化pagination
+    this.originPagination = {}
+    // 是否首次请求
+    this.isFitsrFetch = true
+    // 请求函数
     this.fetch = options.fetch
-    this.pagination = options.pagination
-    this.handleError = options.handleError
 
-    return this.baseModel(options)
+    // 函数名称前缀
+    this.name = options.name
+
+    return this.baseModel()
   }
 
-  baseModel ({fetch, pagination, handleError}) {
-    if (!isFunction(fetch)) {
-      throw new TypeError('fetch is not a Function.')
-    }
-    checkPagination(pagination)
-    checkHandleError(handleError)
-    if (pagination && pagination.page_size) {
-      this.hasSetPaginationSize = true
-      this.originPagination.page_size = pagination.page_size
-    }
-    if (pagination && pagination.page_index) {
-      this.hasSetPaginationIndex = true
-      this.originPagination.page_index = pagination.page_index
-    }
-    if (handleError && isFunction(handleError)) {
-      this.originHandleError = handleError
-      this.hasSetHandleError = true
-    }
+  baseModel () {
+    const self = this
 
     return ({
       namespaced: true,
+      // 在extends的model.state里写同key值数据就可以覆盖本下面初始化的model.state
       state: () => ({
         total: 0,
-        pagination: this.originPagination,
+        pagination: originPagination,
         filters: {},
         tableData: []
       }),
@@ -107,17 +93,24 @@ class BaseModelClass {
           state
         }, payload) {
           const {pagination = state.pagination, filters = {}} = payload || {}
+
+          // 保存初始化的pagination
+          if (self.isFitsrFetch) {
+            self.originPagination = state.pagination
+            self.isFitsrFetch = false
+          }
+
           try {
             // 如果filter和之前的条件不等 则从第一页开始获取数据
             if (!isEqual(filters, state.filters)) {
               pagination.page_index = 1
             }
             const parmas = {
-              ...pagination,
-              ...filters
+              pagination,
+              filters
             }
 
-            const originData = await fetch(parmas)
+            const originData = await self.fetch(formatParmas(parmas))
             const formatData = getList(originData)
             const nextFilters = filters
             const nextTotal = formatData.total
@@ -130,9 +123,11 @@ class BaseModelClass {
             })
             return formatData
           } catch (err) {
-            if (originHandleError && isFunction(originHandleError)) {
-              originHandleError(err, this)
+            if (handleError) {
+              let debounceHandleError = debounce(handleError, 1500)
+              debounceHandleError(err, this)
             } else {
+              console.log(`[createBaseModel] : ${err}`)
               throw new Error(err)
             }
           }
@@ -143,6 +138,7 @@ class BaseModelClass {
         }, payload) {
           const pagination = state.pagination
           pagination.page_size = payload
+          pagination.page_index = 1
           const filters = state.filters
           dispatch('query', {
             pagination,
@@ -164,10 +160,17 @@ class BaseModelClass {
         setFilter ({
           dispatch
         }, payload) {
-          const filters = payload
+          const { filters } = payload
           dispatch('query', {
             filters,
-            pagination: this.originPagination
+            pagination: self.originPagination
+          })
+        },
+        clearFilters ({
+          commit
+        }, payload) {
+          commit('save', {
+            filters: {}
           })
         }
       }

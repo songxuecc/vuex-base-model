@@ -1,28 +1,25 @@
 import {
-    baseModel,
+    createBaseModel,
     modelExtend
 } from '../packages'
 import {fetch} from "../server/fetch";
 
 
-const baseModels = baseModel({
+const baseModels = createBaseModel({
     fetch,
-    pagination: {
-        page_size: 1
-    }
 });
 
 const model = modelExtend(baseModels, {
     namespaced: true,
-    state: () => ({}),
-    mutations: {
-        save(state, payload) {
-            Object.assign(state, payload)
+    state: () => ({
+        pagination: {
+            page_size: 5,
+            page_index: 1
         }
-    },
+    }),
     actions: {
         otherAction({ state }) {
-            console.log(state,'state');
+            console.log(state.pagination.page_size,'state');
         }
     }
 })

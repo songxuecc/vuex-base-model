@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import {createLoadingPlugin, setBaseModelConfig } from '../packages'
 import example from './example'
-import example2 from './example2'
+// import example2 from './example2'
 import example3 from './example3'
 
 setBaseModelConfig({
@@ -15,7 +15,19 @@ setBaseModelConfig({
   pagination: {
     page_size: 10,
     page_index: 1,
-  }
+  },
+  formatParmas:(parmas)=> {
+    return {
+      ...parmas.pagination,
+      ...parmas.filters,
+    }
+  },
+  handleError: (err, self) => {
+    self._vm.$message({
+      message: `${err}`,
+      type: 'error'
+    })
+  },
 })
 
 
@@ -23,7 +35,7 @@ Vue.use(Vuex)
 
 const modules = {
   example,
-  example2,
+  // example2,
   example3
 }
 console.log(modules);

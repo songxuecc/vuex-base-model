@@ -24,7 +24,7 @@ const log = (model, constitute, count) => {
 }
 
 export default function modelExtend (...models) {
-  const base = { state: () => ({}), namespaced:true, actions: {}, mutations: {}, getters: {} }
+  const base = { state: () => ({}), namespaced: true, actions: {}, mutations: {}, getters: {} }
   const stateCache = []
   const stateCount = {}
   const gettersCache = []
