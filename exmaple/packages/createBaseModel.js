@@ -168,7 +168,7 @@ class BaseModelClass {
         },
         clearFilters ({
           commit
-        }, payload) {
+        }) {
           commit('save', {
             filters: {}
           })
