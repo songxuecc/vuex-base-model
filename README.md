@@ -36,7 +36,7 @@ npm run build
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | getList | 配置从接口响应中得到数据列表规范化处理 | Function(response) => ({ tableData: [], total: {}}) | - |
-| formatParmas | 配置从调用处请求的参数格式化 | Function(parmas: Object) => Object | - |
+| formatParmas | 配置从调用处请求的参数格式化，用于合并分页和筛选的数据 | Function(parmas: Object) => Object | - |
 | handleError | 请求错误警告异常 | Function(err: Error, self: vm ) => Any | - |
 | pagination | 初始分页器配置 | {page_size: number,page_index: number} | - |
 
@@ -45,7 +45,7 @@ npm run build
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | getList | 配置从接口响应中得到数据列表规范化处理 | Function(response) => ({ tableData: [], total: {}}) | - |
-| formatParmas | 配置从调用处请求的参数格式化 | Function(parmas: Object) => Object | - |
+| formatParmas | 配置从调用处请求的参数格式化，用于合并分页和筛选的数据 | Function(parmas: Object) => Object | - |
 | handleError | 请求错误警告异常 | Function(err: Error, self: vm ) => Any | - |
 | pagination | 初始分页器配置 | {page_size: number,page_index: number} | - |
 
@@ -72,18 +72,15 @@ setBaseModelConfig({
   // 列表获取
   getList: (response) => {
     let tableData
-    if (response.hasOwnProperty('items')) {
-      tableData = response.items
-    } else {
-      tableData = response.item_list
-    }
+    tableData = response.items
     return {
       tableData,
       total: response.total
     }
   },
-  // 参数格式化
+  // 参数格式化 
   formatParmas: (parmas) => {
+    // 合并分页和筛选的数据
     return {
       ...parmas.pagination,
       ...parmas.filters
