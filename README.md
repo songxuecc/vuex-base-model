@@ -1,38 +1,19 @@
-# example
 
-## Project setup
+## 项目启动
 ```
 npm install
 ```
+## 思路
+1. 避免大量列表查询和分页逻辑的书写，抽离逻辑，用vuex实现达到逻辑与ui分离。所以编写了createBaseModel；
+2. store的注册路径与组建文件夹路径保持一致，利于后期代码维护和模块分离，使用modelExtend继承，可自定义书写业务逻辑代码；
+3. 注册createLoadingPlugin插件，可获取异步事件的loading状态
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## vuex中列表分页查询逻辑抽离与全局loading
+1. modelExtend   类目dva的 dva-model-extend
+2. createLoadingPlugin 类目dva的 action的loading中间件
+3. createBaseModel   列表的请求和筛选，查询封装
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-
-## 项目内部优化-代码
-##### vuex模块抽离与plugin和全局loading
-1. vuex-model-extend   类目dva的 dva-model-extend
-2. vuex-plugin-loading 类目dva的 action的loading中间件
-3. vuex-base-model     列表的请求和筛选，查询封装
-
-
-
-##### 自定义指令 
-##### 组件自动注册
-##### 通过performance面板调试，优化页面加载速度
-1. 代码分割，组件动态加载模块
-2. debounce和throttle 使用
-
-
-列表请求
-### setBaseModelConfig 配置
+### setBaseModelConfig 配置参数
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | getList | 配置从接口响应中得到数据列表规范化处理 | Function(response) => ({ tableData: [], total: {}}) | - |
@@ -41,7 +22,7 @@ npm run build
 | pagination | 初始分页器配置 | {page_size: number,page_index: number} | - |
 
 
-### setBaseModelConfig 配置
+### setBaseModelConfig 配置参数
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | getList | 配置从接口响应中得到数据列表规范化处理 | Function(response) => ({ tableData: [], total: {}}) | - |
@@ -59,6 +40,8 @@ npm run build
 | setFilter | 设置查询条件 - | Function({ pagination, filters })  | - |
 | clearFilters | 删除查询条件 - | Function()  | - |
 
+
+## 使用方法
 ### 在**store.js**中的注册
 ```javascript
 import Vue from 'vue'
@@ -189,6 +172,8 @@ export default {
       })
   },
   computed: {
+    // customerSetting/paidRecharge/consumptionRecord 
+    // 组建层级路径 在store内也保持一致 利于后期代码维护和模块分离
     ...mapState('customerSetting/paidRecharge/consumptionRecord', [
       'tableData',
       'total',
